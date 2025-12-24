@@ -23,7 +23,13 @@
             noise.setOptions(e.data.data);
             noise.render();
         }
-        //alert("message");
+        else if (event.data.type === "requestExportLayer") {
+            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            window.uxpHost.postMessage({
+                type: "exportLayer",
+                data: Array.from(imageData.data),
+            });
+        }
     });
 </script>
 

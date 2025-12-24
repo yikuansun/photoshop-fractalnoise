@@ -1,3 +1,5 @@
+const { app, core, imaging, constants, action } = require("photoshop");
+
 let webView = document.querySelector("#webview");
 console.log(webView);
 
@@ -8,6 +10,9 @@ let noiseOptions = {
     seed: 1,
     stitchTiles: "stitch"
 };
+
+let docWidth = 1024;
+let docHeight = 1024;
 
 let onInput = (e) => {
     noiseOptions.baseFrequency[0] = parseFloat(document.querySelector("#baseFrequency1").value);
@@ -29,3 +34,31 @@ for (var input of document.querySelectorAll("input")) {
 }
 
 document.querySelector("select").addEventListener("change", onInput);
+
+document.querySelector("#exportButton").addEventListener("click", () => {
+    webView.postMessage({
+        type: "requestExportLayer",
+    });
+});
+
+window.addEventListener("message", (e) => {
+    if (e.data.type === "exportLayer") {
+        let view = Uint8Array.from(e.data.data);
+
+        core.executeAsModal(async () => {
+            let imageData = await imaging.createImageDataFromBuffer(view, {
+                width: docWidth,
+                height: docHeight,
+                components: 4,
+                colorSpace: "RGB",
+            });
+            
+            let noiseLayer = await app.activeDocument.layers.add();
+            await imaging.putPixels({
+                layerID: noiseLayer.id,
+                imageData: imageData,
+            });
+            noiseLayer.name = "Fractal Noise";
+        }).catch(err => core.showAlert(err));
+    }
+});
