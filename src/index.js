@@ -62,3 +62,18 @@ window.addEventListener("message", (e) => {
         }).catch(err => core.showAlert(err));
     }
 });
+
+function updateDimensions() {
+    docWidth = parseInt(document.querySelector("#docWidth").value);
+    docHeight = parseInt(document.querySelector("#docHeight").value);
+    webView.postMessage({
+        type: "updateDimensions",
+        data: {
+            width: docWidth,
+            height: docHeight,
+        },
+    });
+}
+
+document.querySelector("#docWidth").addEventListener("input", updateDimensions);
+document.querySelector("#docHeight").addEventListener("input", updateDimensions);

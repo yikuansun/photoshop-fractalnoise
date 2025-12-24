@@ -19,16 +19,21 @@
 
     window.addEventListener("message", (e) => {
         console.log(e.data);
-        if (event.data.type === "setNoiseOptions") {
+        if (e.data.type === "setNoiseOptions") {
             noise.setOptions(e.data.data);
             noise.render();
         }
-        else if (event.data.type === "requestExportLayer") {
+        else if (e.data.type === "requestExportLayer") {
             let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             window.uxpHost.postMessage({
                 type: "exportLayer",
                 data: Array.from(imageData.data),
             });
+        }
+        else if (e.data.type === "updateDimensions") {
+            noise.width = e.data.data.width;
+            noise.height = e.data.data.height;
+            noise.render();
         }
     });
 </script>
