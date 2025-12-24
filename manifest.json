@@ -16,8 +16,8 @@
             "id": "panel",
             "label": "Fractal Noise",
             "minimumSize": {
-                "width": 300,
-                "height": 450
+                "width": 270,
+                "height": 420
             },
             "maximumSize": {
                 "width": 500,

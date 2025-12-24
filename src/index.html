@@ -1,46 +1,55 @@
-<table style="width: 100vw; padding: 5px; box-sizing: border-box;">
-    <tr>
-        <td>Dimensions</td>
-        <td>
-            <input type="number" id="docWidth" value="1024" min="1" step="1" />
-            <input type="number" id="docHeight" value="1024" min="1" step="1" />
-        </td>
-    </tr>
-    <tr>
-        <td>Type</td>
-        <td>
-            <select id="noiseType">
-                <option value="fractalNoise">Clouds</option>
-                <option value="turbulence">Energy</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>Frequency</td>
-        <td>
-            <input type="number" id="baseFrequency1" value="0.01" min="0" step="0.001" />
-            <input type="number" id="baseFrequency2" value="0.01" min="0" step="0.001" />
-        </td>
-    </tr>
-    <tr>
-        <td>Octaves</td>
-        <td>
-            <input type="number" id="octaves" value="5" min="1" step="1" />
-        </td>
-    </tr>
-    <tr>
-        <td>Seed</td>
-        <td>
-            <input type="number" id="seed" value="1" min="1" step="1" />
-        </td>
-    </tr>
-    <tr>
-        <td>Tileable</td>
-        <td>
-            <input type="checkbox" id="stitchTiles" />
-        </td>
-    </tr>
-</table>
+<div id="app">
+    <webview id="webview" src="plugin:/src/frame.html" style="flex-grow: 2; background-color: var(--uxp-host-background-color)"></webview>
+
+    <table>
+        <tr>
+            <td>Dimensions</td>
+            <td>
+                <input type="number" id="docWidth" value="1024" min="1" step="1" />
+                <input type="number" id="docHeight" value="1024" min="1" step="1" />
+            </td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>
+                <select id="noiseType">
+                    <option value="fractalNoise">Clouds</option>
+                    <option value="turbulence">Energy</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Frequency</td>
+            <td>
+                <input type="number" id="baseFrequency1" value="0.01" min="0" step="0.001" />
+                <input type="number" id="baseFrequency2" value="0.01" min="0" step="0.001" />
+            </td>
+        </tr>
+        <tr>
+            <td>Octaves</td>
+            <td>
+                <input type="number" id="octaves" value="5" min="1" step="1" />
+            </td>
+        </tr>
+        <tr>
+            <td>Seed</td>
+            <td>
+                <input type="number" id="seed" value="1" min="1" step="1" />
+            </td>
+        </tr>
+        <tr>
+            <td>Tileable</td>
+            <td>
+                <input type="checkbox" id="stitchTiles" checked />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button id="exportButton">Add to Document</button>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <style>
     :root {
@@ -56,6 +65,19 @@
 
     input[type="number"] {
         width: 50px;
+    }
+
+    #app {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    table {
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
     }
 
     table tr td:nth-child(1) {
