@@ -1,0 +1,73 @@
+<table style="width: 100vw; padding: 5px; box-sizing: border-box;">
+    <tr>
+        <td>Dimensions</td>
+        <td>
+            <input type="number" id="docWidth" value="1024" min="1" step="1" />
+            <input type="number" id="docHeight" value="1024" min="1" step="1" />
+        </td>
+    </tr>
+    <tr>
+        <td>Type</td>
+        <td>
+            <select id="noiseType">
+                <option value="fractalNoise">Clouds</option>
+                <option value="turbulence">Energy</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Frequency</td>
+        <td>
+            <input type="number" id="baseFrequency1" value="0.01" min="0" step="0.001" />
+            <input type="number" id="baseFrequency2" value="0.01" min="0" step="0.001" />
+        </td>
+    </tr>
+    <tr>
+        <td>Octaves</td>
+        <td>
+            <input type="number" id="octaves" value="5" min="1" step="1" />
+        </td>
+    </tr>
+    <tr>
+        <td>Seed</td>
+        <td>
+            <input type="number" id="seed" value="1" min="1" step="1" />
+        </td>
+    </tr>
+    <tr>
+        <td>Tileable</td>
+        <td>
+            <input type="checkbox" id="stitchTiles" />
+        </td>
+    </tr>
+</table>
+
+<style>
+    :root {
+        --primary-color: #E8E8E8;
+        color: var(--primary-color);
+    }
+
+    @media (prefers-color-scheme: lightest), (prefers-color-scheme:light) {
+        :root {
+            --primary-color: #181818;
+        }
+    }
+
+    input[type="number"] {
+        width: 50px;
+    }
+
+    table tr td:nth-child(1) {
+        text-align: left;
+        font-size: larger;
+    }
+
+    table tr td:nth-child(2) {
+        text-align: right;
+    }
+
+    table tr td:nth-child(2) input, table tr td:nth-child(2) select {
+        margin: 2px 5px;
+    }
+</style>

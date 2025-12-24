@@ -1,0 +1,57 @@
+{
+    "manifestVersion": 5,
+    "id": "com.yikuansun.fractalnoise",
+    "name": "Fractal Noise",
+    "version": "1.0.0",
+    "main": "src/index.html",
+    "description": "Create fully-customizable fractal noise textures in Photoshop",
+    "author": "Yikuan Sun",
+    "host": {
+        "app": "PS",
+        "minVersion": "23.3.0"
+    },
+    "entrypoints": [
+        {
+            "type": "panel",
+            "id": "panel",
+            "label": "Fractal Noise",
+            "minimumSize": {
+                "width": 300,
+                "height": 450
+            },
+            "maximumSize": {
+                "width": 500,
+                "height": 800
+            },
+            "icons": [
+                {
+                    "width": 32,
+                    "height": 32,
+                    "path": "icons/icon.png",
+                    "scale": [1, 2, 4],
+                    "theme": ["darkest", "dark", "medium", "light", "lightest"]
+                }
+            ]
+        }
+    ],
+    "icons": [
+        {
+            "width": 32,
+            "height": 32,
+            "path": "icons/icon.png",
+            "scale": [1, 2, 4],
+            "theme": ["darkest", "dark", "medium", "light", "lightest"]
+        }
+    ],
+    "requiredPermissions": {
+        "webview": {
+            "allow": "yes",
+            "domains": ["https://yikuansun.github.io", "https://*.adobe.com"],
+            "allowLocalRendering": "yes",
+            "enableMessageBridge": "localAndRemote"
+        },
+        "launchProcess": {
+            "schemes": ["http", "https"]
+        }
+    }
+}
