@@ -3,10 +3,10 @@
 <canvas id="canvas" width="1024" height="1024"></canvas>
 
 <script>
-    var canvas = document.getElementById("canvas");
-    var ctx = canvas.getContext("2d");
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
 
-    var noise = new FractalNoise(canvas.width, canvas.height, {
+    let noise = new FractalNoise(canvas.width, canvas.height, {
         baseFrequency: [0.01, 0.01],
         type: "fractalNoise",
         numOctaves: 10,

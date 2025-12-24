@@ -77,3 +77,28 @@ function updateDimensions() {
 
 document.querySelector("#docWidth").addEventListener("input", updateDimensions);
 document.querySelector("#docHeight").addEventListener("input", updateDimensions);
+
+// allow arrow key controls for number inputs
+for (let input of document.querySelectorAll("input[type='number']")) {
+    input.addEventListener("keydown", (e) => {
+        let step = parseFloat(e.target.step);
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            e.target.value = parseFloat(e.target.value) + step;
+            if (e.target.max && parseFloat(e.target.value) > parseFloat(e.target.max)) {
+                e.target.value = e.target.max;
+            }
+            e.target.dispatchEvent(new Event("input"));
+            e.target.dispatchEvent(new Event("change"));
+        }
+        else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            e.target.value = parseFloat(e.target.value) - step;
+            if (e.target.min && parseFloat(e.target.value) < parseFloat(e.target.min)) {
+                e.target.value = e.target.min;
+            }
+            e.target.dispatchEvent(new Event("input"));
+            e.target.dispatchEvent(new Event("change"));
+        }
+    });
+}
