@@ -16,6 +16,15 @@
 
     noise.canvas = canvas;
     noise.render();
+
+    window.addEventListener("message", (e) => {
+        console.log(e.data);
+        if (event.data.type === "setNoiseOptions") {
+            noise.setOptions(e.data.data);
+            noise.render();
+        }
+        //alert("message");
+    });
 </script>
 
 <style>
