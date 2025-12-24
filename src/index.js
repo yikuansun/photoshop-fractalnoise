@@ -14,9 +14,9 @@ let noiseOptions = {
 let docWidth = 1024;
 let docHeight = 1024;
 
-let onInput = (e) => {
-    noiseOptions.baseFrequency[0] = parseFloat(document.querySelector("#baseFrequency1").value);
-    noiseOptions.baseFrequency[1] = parseFloat(document.querySelector("#baseFrequency2").value);
+function onInput() {
+    noiseOptions.baseFrequency[0] = parseFloat(document.querySelector("#baseFrequency1").value) / 1000;
+    noiseOptions.baseFrequency[1] = parseFloat(document.querySelector("#baseFrequency2").value) / 1000;
     noiseOptions.type = document.querySelector("#noiseType").value;
     noiseOptions.numOctaves = parseInt(document.querySelector("#octaves").value);
     noiseOptions.seed = parseInt(document.querySelector("#seed").value);

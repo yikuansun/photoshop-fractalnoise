@@ -21,8 +21,8 @@
         <tr>
             <td>Frequency</td>
             <td>
-                <input type="number" id="baseFrequency1" value="0.01" min="0" step="0.001" />
-                <input type="number" id="baseFrequency2" value="0.01" min="0" step="0.001" />
+                <input type="number" id="baseFrequency1" value="10" min="0" step="1" />
+                <input type="number" id="baseFrequency2" value="10" min="0" step="1" />
             </td>
         </tr>
         <tr>
@@ -78,7 +78,7 @@
 
     table {
         width: 100%;
-        padding: 5px;
+        padding: 8px;
         box-sizing: border-box;
     }
 
@@ -92,6 +92,7 @@
     }
 
     table tr td:nth-child(2) input, table tr td:nth-child(2) select {
-        margin: 2px 5px;
+        margin: 0;
+        margin-left: 10px;
     }
 </style>
