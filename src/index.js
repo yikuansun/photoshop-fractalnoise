@@ -35,10 +35,19 @@ function onInput() {
 
     filter.invert = document.querySelector("#invert").checked;
     filter.desaturate = document.querySelector("#desaturate").checked;
-
     webView.postMessage({
         type: "setFilter",
         data: filter,
+    });
+    
+    docWidth = parseInt(document.querySelector("#docWidth").value);
+    docHeight = parseInt(document.querySelector("#docHeight").value);
+    webView.postMessage({
+        type: "updateDimensions",
+        data: {
+            width: docWidth,
+            height: docHeight,
+        },
     });
 };
 
@@ -75,21 +84,6 @@ window.addEventListener("message", (e) => {
         }).catch(err => core.showAlert(err));
     }
 });
-
-function updateDimensions() {
-    docWidth = parseInt(document.querySelector("#docWidth").value);
-    docHeight = parseInt(document.querySelector("#docHeight").value);
-    webView.postMessage({
-        type: "updateDimensions",
-        data: {
-            width: docWidth,
-            height: docHeight,
-        },
-    });
-}
-
-document.querySelector("#docWidth").addEventListener("input", updateDimensions);
-document.querySelector("#docHeight").addEventListener("input", updateDimensions);
 
 // allow arrow key controls for number inputs
 for (let input of document.querySelectorAll("input[type='number']")) {
