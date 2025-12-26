@@ -3,6 +3,7 @@
 <canvas id="canvas" width="1024" height="1024"></canvas>
 
 <script>
+    /** @type {HTMLCanvasElement} */
     let canvas = document.getElementById("canvas");
     let ctx = canvas.getContext("2d");
 
@@ -14,14 +15,22 @@
         stitchTiles: "stitch"
     });
 
-    noise.canvas = canvas;
-    noise.render();
+    let filter = "";
+
+    function drawNoise() {
+        noise.render();
+        canvas.width = noise.width;
+        canvas.height = noise.height;
+        ctx.filter = filter;
+        ctx.drawImage(noise.canvas, 0, 0);
+    }
+    drawNoise();
 
     window.addEventListener("message", (e) => {
         console.log(e.data);
         if (e.data.type === "setNoiseOptions") {
             noise.setOptions(e.data.data);
-            noise.render();
+            drawNoise();
         }
         else if (e.data.type === "requestExportLayer") {
             let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -33,7 +42,13 @@
         else if (e.data.type === "updateDimensions") {
             noise.width = e.data.data.width;
             noise.height = e.data.data.height;
-            noise.render();
+            drawNoise();
+        }
+        else if (e.data.type === "setFilter") {
+            filter = "";
+            if (e.data.data.invert) filter += "invert(100%)";
+            if (e.data.data.desaturate) filter += "saturate(0%)";
+            drawNoise();
         }
     });
 </script>
