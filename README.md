@@ -15,7 +15,7 @@ Fractal Noise is a powerful tool for creating visual effects in softwares such a
 
 > [Download from GitHub](https://github.com/yikuansun/photoshop-fractalnoise/releases/download/v1.0.0/996ca066_PS.ccx) (open the CCX file to install)
 
-> Download from Adobe Exchange (coming soon)
+> [Download from Adobe Exchange](https://exchange.adobe.com/apps/cc/996ca066/fractal-noise-for-photoshop)
 
 ## Usage
 
